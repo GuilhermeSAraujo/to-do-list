@@ -4,7 +4,9 @@ import "./criaTask.css";
 function CriaTask({ novaTask }) {
     const [conteudoTask, setConteudoTask] = useState("");
     const adicionaTask = () => {
-        novaTask(conteudoTask);
+        if (conteudoTask) {
+            novaTask(conteudoTask);
+        }
     };
     return (
         <div className="formulario">
