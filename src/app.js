@@ -4,21 +4,21 @@ import Navbar from "./Components/Navbar/navbar";
 import CriaTask from "./Components/CriaTask/criaTask";
 import ListaTasks from "./Components/ListaTasks/listaTasks";
 
-let id = 0;
+var id = 0;
 const geraId = () => {
-    return id + 1;
+    id++;
+    return id;
 };
 
 function App() {
-    let [listaTasks, setListaTask] = useState([]);
+    let [listaTasks, setListaTasks] = useState([]);
 
     const criaTask = (conteudo) => {
-        console.log(conteudo);
         const novaTask = {
             id: geraId(),
-            conteudo,
+            conteudo: conteudo,
         };
-        setListaTask((taskssExistentes) => {
+        setListaTasks((taskssExistentes) => {
             return [...taskssExistentes, novaTask];
         });
     };
@@ -27,8 +27,9 @@ function App() {
         <div className="App">
             <Navbar />
             <div className="container">
-                <CriaTask criaTask={criaTask} />
+                <CriaTask novaTask={criaTask} />
                 <ListaTasks tasks={listaTasks} />
+                {console.log(listaTasks)}
             </div>
         </div>
     );
