@@ -1,0 +1,39 @@
+.formulario {
+    border: 2px solid grey;
+    padding-left: 15%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    margin-top: 5%;
+    margin-left: 10%;
+    grid-gap: 8px;
+}
+
+h2 {
+    padding-bottom: 1%;
+    text-shadow: -1px 1px 1px #000000;
+    font-weight: bold;
+}
+
+.labelInput {
+    text-shadow: -1px 1px 1px #000000;
+    font-size: large;
+}
+
+#textoTarefa {
+    padding: 2px;
+    margin-right: 5px;
+    margin-top: 3px;
+    box-shadow: 1px 1px 3px black;
+    border: 0;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.botaoAdicionar {
+    background-color: rgb(199, 199, 199);
+    border-radius: 5px;
+    font-size: inherit;
+    color: rgb(0, 0, 0);
+    box-shadow: 1px 1px 1px rgb(0, 0, 0);
+}
