@@ -6,33 +6,38 @@ import ListaTasks from "./Components/ListaTasks/listaTasks";
 
 var id = 0;
 const geraId = () => {
-    id++;
-    return id;
+  id++;
+  return id;
 };
 
 function App() {
-    let [listaTasks, setListaTasks] = useState([]);
+  let [listaTasks, setListaTasks] = useState([]);
 
-    const criaTask = (conteudo) => {
-        const novaTask = {
-            id: geraId(),
-            conteudo: conteudo,
-        };
-        setListaTasks((taskssExistentes) => {
-            return [...taskssExistentes, novaTask];
-        });
+  const criaTask = (conteudo) => {
+    const novaTask = {
+      id: geraId(),
+      conteudo: conteudo
     };
+    setListaTasks((taskssExistentes) => {
+      return [...taskssExistentes, novaTask];
+    });
+  };
 
-    return (
-        <div className="App">
-            <Navbar />
-            <div className="container">
-                <CriaTask novaTask={criaTask} />
-                <ListaTasks tasks={listaTasks} />
-                {console.log(listaTasks)}
-            </div>
-        </div>
-    );
+  const removeTask = (taskId) => {
+    let arrayTasks = [...listaTasks];
+    let arrayTasksFiltrado = arrayTasks.filter((task) => task.id !== taskId);
+    setListaTasks(arrayTasksFiltrado);
+  };
+
+  return (
+    <div className="App">
+      <Navbar />
+      <div className="container">
+        <CriaTask novaTask={criaTask} />
+        <ListaTasks tasks={listaTasks} removeTask={removeTask} />
+      </div>
+    </div>
+  );
 }
 
 export default App;
