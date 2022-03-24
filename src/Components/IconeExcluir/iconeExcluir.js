@@ -1,5 +1,5 @@
-import React from 'react';
-import IconeLixeira from './lixeira.svg'; // Path to your icons.svg
+import React from "react";
+import IconeLixeira from "https://guilhermesaraujo.github.io/to-do-list/src/Components/IconeExcluir/lixeira.svg"; // Path to your icons.svg
 
 const IconeExcluir = ({ excluirTask, taskId, tamanho }) => (
   <>
