@@ -9,4 +9,4 @@ const IconeConcluir = ({ concluirTask, taskId, tamanho }) => (
   </>
 );
 
-export default IconeConcluir; //
+export default IconeConcluir;
