@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import "./task.css";
+import React, { useState } from 'react';
+import './task.css';
+import IconeExcluir from '../IconeExcluir/iconeExcluir';
+import IconeConcluir from '../IconeConcluir/iconeConcluir';
 
 function Task({ task, deletaTask }) {
   let [mostraOpcoes, setMostraOpcoes] = useState(false);
@@ -18,18 +20,24 @@ function Task({ task, deletaTask }) {
     return (
       <div key={task.id}>
         {conteudo}
-        <button
+        {/* <button
           onMouseOut={() => setMostraOpcoes(false)}
           onClick={() => concluiTask()}
         >
           Concluir
-        </button>
-        <button
+        </button> */}
+        <IconeConcluir
+          concluirTask={concluiTask}
+          taskId={task.id}
+          tamanho="25"
+        />
+        <IconeExcluir
+          excluirTask={removeTask}
+          taskId={task.id}
           onMouseOut={() => setMostraOpcoes(false)}
           onClick={() => removeTask(task.id)}
-        >
-          Deletar
-        </button>
+          tamanho="25"
+        />
       </div>
     );
   } else {
