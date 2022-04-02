@@ -9,6 +9,14 @@ function Task({ task, deletaTask }) {
     const removeTask = (taskId) => deletaTask(taskId);
     const concluiTask = () => setTaskConcluida((statusAnterior) => !statusAnterior);
 
+    const alteraEstadoComDelay = (estado, delay) => {
+        setTimeout(
+            setTimeout(() => {
+                setMostraOpcoes(estado);
+            }, delay)
+        );
+    };
+
     var conteudo = <></>;
     if (taskConcluida) {
         conteudo = <s>{task.conteudo}</s>;
@@ -18,16 +26,26 @@ function Task({ task, deletaTask }) {
     if (mostraOpcoes) {
         return (
             <div key={task.id}>
-                <div onMouseOut={() => setMostraOpcoes(false)}>
+                <div onMouseOut={() => alteraEstadoComDelay(false, 170)}>
                     <a>{conteudo}</a>
-                    <IconeConcluir concluirTask={concluiTask} taskId={task.id} tamanho="15" />
-                    <IconeExcluir excluirTask={removeTask} taskId={task.id} tamanho="15" />
+                    <IconeConcluir
+                        concluirTask={concluiTask}
+                        taskId={task.id}
+                        tamanho="10"
+                        className="iconeConcluir"
+                    />
+                    <IconeExcluir
+                        excluirTask={removeTask}
+                        taskId={task.id}
+                        tamanho="10"
+                        className="iconeExcluir"
+                    />
                 </div>
             </div>
         );
     } else {
         return (
-            <div onMouseOver={() => setMostraOpcoes(true)} key={task.id}>
+            <div onMouseOver={() => alteraEstadoComDelay(true, 0)} key={task.id}>
                 {conteudo}
             </div>
         );

@@ -5,7 +5,11 @@ const model = mongoose.Schema({
         type: String,
         required: true,
     },
-    data: {
+    status: {
+        type: Boolean,
+        require: true,
+    },
+    date: {
         type: Date,
         required: true,
     },

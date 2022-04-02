@@ -1,10 +1,10 @@
 import React from "react";
-// import IconeCheck from "https://guilhermesaraujo.github.io/to-do-list/src/Components/IconeConcluir/iconeConcluir.svg"; // Path to your icons.svg
 import IconeCheck from "./iconeConcluir.svg"; // Path to your icons.svg
+import "./iconeConcluir.css";
 
 const IconeConcluir = ({ concluirTask, taskId, tamanho }) => (
     <>
-        <button onClick={() => concluirTask(taskId)}>
+        <button onClick={() => concluirTask(taskId)} className="iconeConcluir">
             <img src={IconeCheck} alt="mySvgImage" width={tamanho} height={tamanho} />
         </button>
     </>
