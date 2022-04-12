@@ -1,3 +1,4 @@
+const { all } = require("../../routes.js");
 const TaskModel = require("../Models/taskModel.js");
 
 const createTask = async (task) => {
@@ -14,6 +15,12 @@ const createTask = async (task) => {
     }
 };
 
+const returnAllTasks = async () => {
+    const allTasks = await TaskModel.find();
+    return allTasks;
+}
+
 module.exports = {
     createTask: createTask,
+    returnAllTasks: returnAllTasks
 };
