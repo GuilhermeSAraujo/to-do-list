@@ -13,7 +13,7 @@ function ListaTasks({ tasks, removeTask }) {
       <div className="lista">
         <h2>Tarefas Cadastradas</h2>
         {tasks.map((task) => {
-          return <Task key={task.id} task={task} deletaTask={deletaTask} />;
+          return <Task key={task._id} task={task} deletaTask={deletaTask} />;
         })}
       </div>
     );

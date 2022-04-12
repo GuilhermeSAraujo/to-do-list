@@ -1,10 +1,11 @@
 const express = require("express");
-const mongoose = require("mongoose");
+var cors = require('cors');
 const routes = require("./routes.js");
 const database = require("./src/Config/database.js");
 
 const app = express();
 database.connect();
+app.use(cors());
 app.use(express.json());
 app.use(routes);
 
