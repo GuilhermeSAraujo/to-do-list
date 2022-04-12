@@ -1,22 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const routes = require("./routes.js");
+const database = require("./src/Config/database.js");
+
 const app = express();
-const authRoute = require("./routes/auth");
-
-const dbURI = "mongodb://localhost/pies";
+database.connect();
 app.use(express.json());
-app.use("/api/auth", authRoute);
+app.use(routes);
 
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-
-db.on("error", (err) => {
-    console.error(err);
-});
-db.once("open", () => {
-    console.log("DB started successfully");
-});
-
-app.listen(2400, () => {
-    console.log("Server started: 2400");
-});
+app.listen(3333);
