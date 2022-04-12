@@ -9,10 +9,10 @@ const model = mongoose.Schema({
         type: Boolean,
         require: true,
     },
-    // date: {
-    //     type: Date,
-    //     required: true,
-    // },
+    date: {
+        type: Date,
+        required: true,
+    },
 });
 
 module.exports = new mongoose.model("Task", model);

@@ -3,7 +3,6 @@ const router = express.Router();
 const taskController = require("./src/Controller/taskController.js");
 
 router.post("/task", async (req, res) => {
-    console.log(req.body.content);
     const success = await taskController.createTask(req.body);
     if (success) {
         console.log("Salvo");
@@ -11,6 +10,12 @@ router.post("/task", async (req, res) => {
     } else {
         res.sendStatus(400);
     }
+});
+
+router.get("/task", async (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    const allTasks = await taskController.returnAllTasks();
+    return res.end(JSON.stringify(allTasks));
 });
 
 module.exports = router;
