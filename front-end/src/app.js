@@ -1,42 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./app.css";
-import taskController from "./Controllers/taskController";
 import Navbar from "./Components/Navbar/navbar";
 import CriaTask from "./Components/CriaTask/criaTask";
 import ListaTasks from "./Components/ListaTasks/listaTasks";
+import taskController from "./Controllers/taskController";
+
 
 function App() {
-	let [listaTasks, setListaTasks] = useState([]);
+	let [tasks, setListaTasks] = useState([]);
+
+	const removeTask = async (taskId) => {
+		await taskController.removeTask(taskId);
+		let novaListaTask = [];
+		tasks.forEach((task) => {
+			if (task._id !== taskId) {
+				novaListaTask.push(task);
+			}
+		});
+		setListaTasks(novaListaTask);
+	}
+	
+	const createTask = async (task) => {
+		const idNewTask = await taskController.createTask(task);
+		task._id = idNewTask;
+		setListaTasks((oldTaskList) => [...oldTaskList, task]);
+	}
 
 	useEffect(() => {
-		const getAllTasks = async () => {
-			let response = await taskController.returnAllTasks();
-			await setListaTasks(response);
+		const fetchTasks = async () => {
+			const data = await taskController.returnAllTasks();
+			setListaTasks(data);
 		}
-		getAllTasks();
+		fetchTasks();
 	}, []);
 
-	const criaTask = (conteudo) => {
-		const novaTask = {
-			id: conteudo._id,
-			conteudo: conteudo.content
-		};
-		setListaTasks((taskssExistentes) => {
-			return [...taskssExistentes, novaTask];
-		});
-	};
-
-	const removeTask = (taskId) => {
-		let arrayTasks = [...listaTasks];
-		let arrayTasksFiltrado = arrayTasks.filter((task) => task.id !== taskId);
-		setListaTasks(arrayTasksFiltrado);
-	};
 	return (
 		<div className="App">
 			<Navbar />
 			<div className="container">
-				<CriaTask novaTask={criaTask} />
-				<ListaTasks tasks={listaTasks} removeTask={removeTask} />
+				<CriaTask createTask={createTask} />
+				<ListaTasks tasks={tasks} removeTask={removeTask} />
 			</div>
 		</div>
 	);
