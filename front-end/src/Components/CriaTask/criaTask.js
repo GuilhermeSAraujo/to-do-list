@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import "./criaTask.css";
 
-function CriaTask({ novaTask }) {
-    const [conteudoTask, setConteudoTask] = useState("");
-    const adicionaTask = () => {
-        if (conteudoTask) {
-            novaTask(conteudoTask);
-        }
-    };
+function CriaTask({ createTask }) {
+    const [taskContent, setTaskContent] = useState("");
+
+    const addTask = () => {
+        let newTaskData = {
+            date: new Date(),
+            status: false,
+            content: taskContent
+        };
+        createTask(newTaskData);
+    }
+
     return (
         <div className="formulario">
             <h2>Criar Tarefas</h2>
@@ -17,9 +22,9 @@ function CriaTask({ novaTask }) {
                 placeholder="Tarefa"
                 id="textoTarefa"
                 type="text"
-                onChange={(event) => setConteudoTask(event.target.value)}
+                onChange={(event) => setTaskContent(event.target.value)}
             ></input>
-            <button className="botaoAdicionar" onClick={adicionaTask}>
+            <button className="botaoAdicionar" onClick={() => addTask()}>
                 Adicionar tarefa
             </button>
         </div>
