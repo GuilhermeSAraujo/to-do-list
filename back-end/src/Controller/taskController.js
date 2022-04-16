@@ -1,4 +1,3 @@
-const { all } = require("../../routes.js");
 const TaskModel = require("../Models/taskModel.js");
 
 const createTask = async (task) => {
@@ -8,10 +7,12 @@ const createTask = async (task) => {
             status: task.status,
             date: task.date,
         });
-        modelTask.save();
-        return true;
+        let saveReturn = await modelTask.save();
+        console.log(saveReturn);
+        return saveReturn._id;
     } catch (e) {
-        return false;
+        console.log(e);
+        return undefined;
     }
 };
 
@@ -20,7 +21,12 @@ const returnAllTasks = async () => {
     return allTasks;
 }
 
+const deleteTaskById = async (taskId) => {
+    return await TaskModel.deleteOne({ _id: taskId });
+}
+
 module.exports = {
     createTask: createTask,
-    returnAllTasks: returnAllTasks
+    returnAllTasks: returnAllTasks,
+    deleteTaskById: deleteTaskById
 };
