@@ -24,9 +24,10 @@ const createTask = async (taskData) => {
 }
 
 const updateTask = async (newTaskData) => {
+	console.log(newTaskData);
 	let url = `http://localhost:3333/task`;
 	let updateReturn = await fetch(url, {
-		method: 'UPDATE',
+		method: 'PUT',
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json'
