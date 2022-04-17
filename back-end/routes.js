@@ -27,6 +27,10 @@ router.delete("/task/", async (req, res) => {
     } catch (error) {
         throw "Erro na hora de excluir";
     }
-})
+});
+
+router.put("/task", async (req, res) => {
+    taskController.updateTask(req.body);
+});
 
 module.exports = router;

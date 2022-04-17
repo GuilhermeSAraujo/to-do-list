@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const MONGO_URI = "mongodb+srv://guilherme:<password>@cluster0.fvtua.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const MONGO_URI = "mongodb+srv://guilherme:<senha>@cluster0.fvtua.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 exports.connect = () => {
     // Connecting to the database

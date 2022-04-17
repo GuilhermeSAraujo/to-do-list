@@ -19,11 +19,29 @@ function App() {
 		});
 		setListaTasks(novaListaTask);
 	}
-	
+
 	const createTask = async (task) => {
 		const idNewTask = await taskController.createTask(task);
 		task._id = idNewTask;
 		setListaTasks((oldTaskList) => [...oldTaskList, task]);
+	}
+
+	const updateTask = async (task) => {
+		let newTaskContent = {};
+		let updatedTasks = tasks.map((taskItem) => {
+			if (taskItem._id === task._id) {
+				newTaskContent = {
+					content: task.content,
+					_id: task._id,
+					date: taskItem.date
+				};
+				return newTaskContent;
+			} else {
+				return taskItem;
+			}
+		})
+		setListaTasks(updatedTasks);
+		await taskController.updateTask(newTaskContent);
 	}
 
 	useEffect(() => {
@@ -39,7 +57,7 @@ function App() {
 			<Navbar />
 			<div className="container">
 				<CriaTask createTask={createTask} />
-				<ListaTasks tasks={tasks} removeTask={removeTask} />
+				<ListaTasks tasks={tasks} removeTask={removeTask} updateTask={updateTask} />
 			</div>
 		</div>
 	);

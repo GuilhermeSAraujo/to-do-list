@@ -23,8 +23,24 @@ const createTask = async (taskData) => {
 	return createReturn.id;
 }
 
+const updateTask = async (newTaskData) => {
+	console.log(newTaskData);
+	let url = `http://localhost:3333/task`;
+	let updateReturn = await fetch(url, {
+		method: 'PUT',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(newTaskData)
+	});
+	updateReturn = await updateReturn.json();
+	return updateReturn.id;
+}
+
 module.exports = {
 	returnAllTasks: returnAllTasks,
 	removeTask: removeTask,
-	createTask: createTask
+	createTask: createTask,
+	updateTask: updateTask
 }
