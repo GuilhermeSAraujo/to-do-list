@@ -19,19 +19,19 @@ const createTask = async (task) => {
 const returnAllTasks = async () => {
     const allTasks = await TaskModel.find();
     return allTasks;
-}
+};
 
 const deleteTaskById = async (taskId) => {
     return await TaskModel.deleteOne({ _id: taskId });
-}
+};
 
 const updateTask = async (task) => {
     return await TaskModel.update({ _id: task._id }, { content: task.content }, { upsert: true });
-}
+};
 
 module.exports = {
     createTask: createTask,
     returnAllTasks: returnAllTasks,
     deleteTaskById: deleteTaskById,
-    updateTask: updateTask
+    updateTask: updateTask,
 };

@@ -8,10 +8,29 @@ function CriaTask({ createTask }) {
         let newTaskData = {
             date: new Date(),
             status: false,
-            content: taskContent
+            content: taskContent,
         };
         createTask(newTaskData);
-    }
+    };
+
+    const cutucarEndpoint = async () => {
+        let retornoFetch = fetch("http://localhost:3333/register", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                firstName: "Guilherme",
+                lastName: "Araújo",
+                email: "guilhermesouzae@hotmail.com",
+                password: "12345",
+            }),
+        });
+        retornoFetch = await retornoFetch.json();
+        console.log(retornoFetch.id);
+        // return retornofetch.id;
+    };
 
     return (
         <div className="formulario">
@@ -24,7 +43,8 @@ function CriaTask({ createTask }) {
                 type="text"
                 onChange={(event) => setTaskContent(event.target.value)}
             ></input>
-            <button className="botaoAdicionar" onClick={() => addTask()}>
+            {/* <button className="botaoAdicionar" onClick={() => addTask()}> */}
+            <button className="botaoAdicionar" onClick={() => cutucarEndpoint()}>
                 Adicionar tarefa
             </button>
         </div>
